@@ -1,4 +1,3 @@
-" Required by vundle
 " as vim
 set nocompatible 
 
@@ -6,15 +5,13 @@ set nocompatible
 if has("autocmd")
     filetype plugin indent on
 endif
-" need for vim-markdown-folding end
-"
+
 filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " or call vundle#begin('~/some/path/here/to/install/plugins/'
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
 "" plugin on GitHub repo
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'tpope/vim-markdown'
@@ -34,20 +31,19 @@ call vundle#end()
 filetype plugin indent on
 
 
-
 set guifont=Menlo\ Regular:h14
 ""set background=dark " background is dark steries
 ""highlight Folded guibg=#a0a0a0 guifg=blue
 ""colorscheme elflord
-""set nobackup " could be use git as a replacement
-""set ruler " show col and row num
-""set nu " set number and relative number
-""set showcmd " show cmd 
+set nobackup " could be use git as a replacement
+set ruler " show col and row num
+set nu " set number and relative number
+set showcmd " show cmd 
 ""
 
 """set showmode " default on in vim show insert / normal mode
 ""set scrolloff=3 " show 3 line above or follow cursor
-""set backspace=indent,eol,start " use backspace in indent , end of line, or start
+set backspace=indent,eol,start " use backspace in indent , end of line, or start
 ""
 """search config
 ""set showmatch
@@ -58,7 +54,7 @@ set guifont=Menlo\ Regular:h14
 ""
 ""set expandtab
 ""set smarttab
-""set smartindent
+set smartindent
 ""
 ""
 ""
@@ -68,12 +64,12 @@ set guifont=Menlo\ Regular:h14
 nmap ,r :!python %<cr>
 
 ""
-""set softtabstop=4 "only afface tab but not indent
+set softtabstop=4 "only afface tab but not indent
 """set ts=4 "cause indent error in python
 ""set sw=4
 ""
-""set smartindent " after if,for,etal can auto indent
-""set autoindent "only indent as same as above line
+set smartindent " after if,for,etal can auto indent
+set autoindent "only indent as same as above line
 ""
 ""set nowritebackup
 ""set noswapfile
