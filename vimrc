@@ -36,7 +36,7 @@ set guifont=Menlo\ Regular:h14
 ""highlight Folded guibg=#a0a0a0 guifg=blue
 ""colorscheme elflord
 set nobackup " could be use git as a replacement
-set ruler " show col and row num
+"set ruler " show col and row num
 set nu " set number and relative number
 set showcmd " show cmd 
 ""
@@ -100,7 +100,7 @@ autocmd! bufwritepost .vimrc source %
 
 
 "" Mouse and backspace
-set mouse=a  " on OSX press ALT and click
+"set mouse=a  " on OSX press ALT and click
 "" NOT work
 " set bs=2     " make backspace behave like normal again
 ""set backspace=indent,eol,start " use backspace in indent , end of line, or start
