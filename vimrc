@@ -4,9 +4,6 @@
 set nocompatible
 
 " =============== Vundle Initialization ===============
-" This loads all the plugins specified in ~/.vim/vundles.vim
-" Use Vundle plugin to manage all other plugins
-source ~/.vim/bundle/Vundle.vim
 
 filetype off                        "Necessary for install vundles
 set rtp+=~/.vim/bundle/Vundle.vim   "Set the runtime path to include Vundle and initialize
@@ -59,7 +56,7 @@ let mapleader=","
 
 set noswapfile
 set nobackup
-set nowb
+set nowritebackup
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
