@@ -1,3 +1,5 @@
+" File ~/.vimrc
+" $HOME/_vimrc on windows
 "" Use Vim settings, rather then Vi settings (much better!).
 set nocompatible
 
@@ -40,8 +42,6 @@ Plugin 'gmarik/Vundle.vim'          "Let Vundle manage Vundle, required
 "" plugin on GitHub repo
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'tpope/vim-markdown'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'vim-scripts/Wombat'
 "" plugin from http://vim-scripts.org/vim/scripts.html
 "plugin 'Wombat'
 "" Git plugin not hosted on GitHub
@@ -134,22 +134,10 @@ set smartcase       " ...unless we type a capital
 "" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 color wombat256mod
-"if has('gui_running')
-"    set background=light
-"else
-"    set background=dark
-"endif
-"colorscheme solarized
 set guifont=Menlo\ Regular:h16
 
 " ================ Custom Settings ========================
 "
-"Need for vim-markdown-folding
-if has("autocmd")
-    filetype plugin indent on
-endif
-nnoremap <Space> za   "Shortcut space to fold
-
 
 """""""""""""""""""""""""""""""""""""""
 
@@ -334,5 +322,3 @@ nnoremap <Space> za   "Shortcut space to fold
 """ mkdir -p ~/.vim/ftplugin
 """ wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 """ set nofoldenable
-""" Default Python folding:
-""set foldmethod=indent
