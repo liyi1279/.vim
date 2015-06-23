@@ -6,9 +6,7 @@ set nocompatible
 " =============== Vundle Initialization ===============
 " This loads all the plugins specified in ~/.vim/vundles.vim
 " Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundles.vim"))
-  source ~/.vim/vundles.vim
-endif
+source ~/.vim/bundle/Vundle.vim
 
 filetype off                        "Necessary for install vundles
 set rtp+=~/.vim/bundle/Vundle.vim   "Set the runtime path to include Vundle and initialize
