@@ -3,6 +3,10 @@
 "" Use Vim settings, rather then Vi settings (much better!).
 set nocompatible
 
+" The mapleader has to be set before vundle starts loading all the plugins
+let mapleader=","
+let maplocalleader=","
+
 " =============== Vundle Initialization ===============
 
 filetype off                        "Necessary for install vundles
@@ -14,11 +18,11 @@ Plugin 'gmarik/Vundle.vim'          "Let Vundle manage Vundle, required
 "" plugin on GitHub repo
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'tpope/vim-markdown'
-Plugin 'ervandew/screen'            "Split shell in vim
-Plugin 'jalvesaq/VimCom'            "communication from vim-r-plugin to r
-Plugin 'jcfaria/Vim-R-plugin'            "communication from vim-r-plugin to r
+"Plugin 'ervandew/screen'            "Split shell in vim
+Plugin 'vim-scripts/Vim-R-plugin'            "communication from vim-r-plugin to r
 "" plugii from http://vim-scripts.org/vim/scripts.html
-"plugin 'Wombat'
+"Plugin 'Vim-R-plugin'
+"Plugin 'Wombat'
 "" Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 "" git repos on your local machine (i.e. when working on your own plugin)
@@ -53,8 +57,6 @@ set hidden
 "syntax enable                   "Keep current color setting
 syntax on                      "Let vim to overrule your setting with default
 
-" The mapleader has to be set before vundle starts loading all the plugins
-let mapleader=","
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
@@ -91,25 +93,25 @@ set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
 
 " ================ Folds ============================
-"
-"set foldmethod=indent   "fold based on indent
-"set foldnestmax=3       "deepest fold is 3 levels
-"set nofoldenable        "dont fold by default
-"
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
 " ================ Completion =======================
 "
-"set wildmode=list:longest
-"set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-"set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-"set wildignore+=*vim/backups*
-"set wildignore+=*sass-cache*
-"set wildignore+=*DS_Store*
-"set wildignore+=vendor/rails/**
-"set wildignore+=vendor/cache/**
-"set wildignore+=*.gem
-"set wildignore+=log/**
-"set wildignore+=tmp/**
-"set wildignore+=*.png,*.jpg,*.gif
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
 "
 "
 " ================ Scrolling ========================
@@ -137,4 +139,11 @@ set guifont=Menlo\ Regular:h16
 
 " ================ Custom Settings ========================
 "
+" R script settings
+"
+
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
+let vimrplugin_applescript=0
+let vimrplugin_vsplit=1
 
