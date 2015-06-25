@@ -19,10 +19,11 @@
 	* `sudo apt-get install r-base`
 	* `sudo apt-get install r-base-dev` (to use 'install.packages()')
 3. Install tmux.
-4. Install vimcom = 1.2-6
-		* `audo apt-get install libx11-dev`
-		* _R:>>_`download.file("http://www.lepem.ufc.br/jaa.vimr/vimcom_1.2-6.tar.gz",destfile="vimcom_1.2-6.tar.gz")`
-		* _R:>>_`install.packages("vimcom_1.2-6.tar.gz",type="source",repos=NULL)`
+4. Install vimcom = 1.2-6.
+
+		* `sudo apt-get install libx11-dev`
+		* __R:>>__`download.file("http://www.lepem.ufc.br/jaa.vimr/vimcom_1.2-6.tar.gz",destfile="vimcom_1.2-6.tar.gz")`
+		* __R:>>__`install.packages("vimcom_1.2-6.tar.gz",type="source",repos=NULL)`
 		* `ln -s ~/dotfiles/Rprofile ~/.Rprofile`
 5. Install vim-r-plugin
 
