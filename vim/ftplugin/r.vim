@@ -12,33 +12,9 @@
 if v:progname =~? "evim"
   finish
 endif
+"" Needed for vim-r-plugin
+set runtimepath=~/Vim-R-plugin,~/.vim,$VIMRUNTIME,~/.vim/after
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-
-"set autoindent		" always set autoindenting on
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-set history=50		" keep 50 lines of command line history
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set nowrap		" turns off text wrapping
-set nospell 		" turns on spell check for all files
-" autocmd BufNewFile,BufRead *.txt,*.html,README set spell "turns on spell check only for specified files
-set paste		" turns on traditional pasting of text
-" set number 		" turns line numbering on
-colorscheme elflord	" sets color scheme;  default (black bkgr), torte (black bgr), murphy (black bkgr), elflord (black bkgr), blue (blue bkgr), morning (white bkgr), shine (white bkgr) 
-set ruler		" show the cursor position all the time
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " sample settings for vim-r-plugin and screen.vim
 " Installation 
 "       - Place plugin file under ~/.vim/
@@ -162,116 +138,114 @@ endif " has("autocmd")
 " script on page, not first!!!!!).
 " paste in vimrc file - tested with GVim 6.3
 
-"** use visual block <Ctrl-V> to select lines to sort and hit <F3> **
-vmap <F3> :call Sort(Prompt("0","1"),Prompt("1","f"),"Strcmp")<CR>
-
-"sort lines function
-function Sort(wnum, order, cmp) range
-  normal `<
-  execute "let startcol = col(\".\")"
-  normal `>
-  execute "let endcol = col(\".\")"
-  if startcol <= endcol
-    let firstcol = startcol
-    let lastcol = endcol
-  else
-    let firstcol = endcol
-    let lastcol = startcol
-  endif
-
-  call SortR(a:firstline, a:lastline, firstcol, lastcol, a:wnum, a:order, a:cmp)
-  normal gv
-endfunction
-
-"sort lines recursively
-function SortR(start, end, first, last, wnum, order, cmp)
-  if a:start >= a:end
-    return
-  endif
-
-  let partition = a:start - 1
-  let middle = partition
-  let partstr2 = Words2(getline((a:start + a:end) / 2), a:first, a:last, a:wnum)
-  let i = a:start
-
-  while i <= a:end
-    let str = getline(i)
-    let partstr = Words2(str, a:first, a:last, a:wnum)
-    if a:order == "r"
-      execute "let result = ".a:cmp."(partstr2, partstr)"
-    else
-      execute "let result = ".a:cmp."(partstr, partstr2)"
-    endif
-
-    if result <= 0
-      "swap i before partition
-      let partition = partition + 1
-
-      if result == 0
-        let middle = partition
-      endif
-
-      if i != partition
-        let str2 = getline(partition)
-        call setline(i, str2)
-        call setline(partition, str)
-      endif
-    endif
-
-    let i = i + 1
-  endwhile
-
-  "make sure middle element at end of partition
-  if middle != partition
-    let str = getline(middle)
-    let str2 = getline(partition)
-    call setline(middle, str2)
-    call setline(partition, str)
-  endif
-
-  call SortR(a:start, partition - 1, a:first, a:last, a:wnum, a:order, a:cmp)
-  call SortR(partition + 1, a:end, a:first, a:last, a:wnum, a:order, a:cmp)
-endfunction
-
-"determine compare strings
-function Words2(line, first, last, wnum)
-  if a:wnum == "v"
-    return strpart(a:line, a:first - 1, a:last - a:first + 1)
-  elseif a:wnum > 1
-    return strpart(a:line, matchend(a:line, "\\s*\\(\\S*\\s*\\)\\{".(a:wnum - 1)."}"))
-  elseif a:wnum == 1
-    return strpart(a:line, matchend(a:line, "\\s*"))
-  elseif a:wnum < 0
-    return matchstr(a:line, "\\(\\S*\\s*\\)\\{".(-a:wnum)."}$")
-  else
-    return a:line
-  endif
-endfunction
-
-"compare two strings
-function Strcmp(str1, str2)
-  if a:str1 < a:str2
-    return -1
-  elseif a:str1 > a:str2
-    return 1
-  else
-    return 0
-  endif
-endfunction
-
-"prompt user for settings
-function Prompt(str, ...)
-  let default = a:0 ? a:1 : ""
-  if a:str == "0"
-    let str = "Sort by which word [(0)whole line (<0)count from right (v)isual]? "
-  elseif a:str == "1"
-    let str = "Order [(f)orward (r)everse]? "
-  endif
-
-  execute "let ret = input(\"".str."\", \"".default."\")"
-
-  return ret
-endfunction 
-
-
-set tabstop=8
+""** use visual block <Ctrl-V> to select lines to sort and hit <F3> **
+"vmap <F3> :call Sort(Prompt("0","1"),Prompt("1","f"),"Strcmp")<CR>
+"
+""sort lines function
+"function Sort(wnum, order, cmp) range
+"  normal `<
+"  execute "let startcol = col(\".\")"
+"  normal `>
+"  execute "let endcol = col(\".\")"
+"  if startcol <= endcol
+"    let firstcol = startcol
+"    let lastcol = endcol
+"  else
+"    let firstcol = endcol
+"    let lastcol = startcol
+"  endif
+"
+"  call SortR(a:firstline, a:lastline, firstcol, lastcol, a:wnum, a:order, a:cmp)
+"  normal gv
+"endfunction
+"
+""sort lines recursively
+"function SortR(start, end, first, last, wnum, order, cmp)
+"  if a:start >= a:end
+"    return
+"  endif
+"
+"  let partition = a:start - 1
+"  let middle = partition
+"  let partstr2 = Words2(getline((a:start + a:end) / 2), a:first, a:last, a:wnum)
+"  let i = a:start
+"
+"  while i <= a:end
+"    let str = getline(i)
+"    let partstr = Words2(str, a:first, a:last, a:wnum)
+"    if a:order == "r"
+"      execute "let result = ".a:cmp."(partstr2, partstr)"
+"    else
+"      execute "let result = ".a:cmp."(partstr, partstr2)"
+"    endif
+"
+"    if result <= 0
+"      "swap i before partition
+"      let partition = partition + 1
+"
+"      if result == 0
+"        let middle = partition
+"      endif
+"
+"      if i != partition
+"        let str2 = getline(partition)
+"        call setline(i, str2)
+"        call setline(partition, str)
+"      endif
+"    endif
+"
+"    let i = i + 1
+"  endwhile
+"
+"  "make sure middle element at end of partition
+"  if middle != partition
+"    let str = getline(middle)
+"    let str2 = getline(partition)
+"    call setline(middle, str2)
+"    call setline(partition, str)
+"  endif
+"
+"  call SortR(a:start, partition - 1, a:first, a:last, a:wnum, a:order, a:cmp)
+"  call SortR(partition + 1, a:end, a:first, a:last, a:wnum, a:order, a:cmp)
+"endfunction
+"
+""determine compare strings
+"function Words2(line, first, last, wnum)
+"  if a:wnum == "v"
+"    return strpart(a:line, a:first - 1, a:last - a:first + 1)
+"  elseif a:wnum > 1
+"    return strpart(a:line, matchend(a:line, "\\s*\\(\\S*\\s*\\)\\{".(a:wnum - 1)."}"))
+"  elseif a:wnum == 1
+"    return strpart(a:line, matchend(a:line, "\\s*"))
+"  elseif a:wnum < 0
+"    return matchstr(a:line, "\\(\\S*\\s*\\)\\{".(-a:wnum)."}$")
+"  else
+"    return a:line
+"  endif
+"endfunction
+"
+""compare two strings
+"function Strcmp(str1, str2)
+"  if a:str1 < a:str2
+"    return -1
+"  elseif a:str1 > a:str2
+"    return 1
+"  else
+"    return 0
+"  endif
+"endfunction
+"
+""prompt user for settings
+"function Prompt(str, ...)
+"  let default = a:0 ? a:1 : ""
+"  if a:str == "0"
+"    let str = "Sort by which word [(0)whole line (<0)count from right (v)isual]? "
+"  elseif a:str == "1"
+"    let str = "Order [(f)orward (r)everse]? "
+"  endif
+"
+"  execute "let ret = input(\"".str."\", \"".default."\")"
+"
+"  return ret
+"endfunction 
+"
