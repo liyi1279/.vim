@@ -11,6 +11,13 @@
 
 # Vim + R
 ## Ubuntu
+1. Install vim > 7.4: `sudo apt-get install vim`
+2. Install r . 3.0 
+	* `echo 'deb http://healthstat.snu.ac.kr/CRAN/bin/linux/ubuntu trusty/' | sudo tee -a /etc/apt/sources.list`
+	* `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9`
+	* `sudo apt-get update`
+	* `sudo apt-get install r-base`
+	* `sudo apt-get install r-base-dev` (to use 'install.packages()')
 1. Install vim-r-plugin
 	* vim version should be > 7.4
 	* R version > 3.0 
